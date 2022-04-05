@@ -21,7 +21,7 @@
         overflow:hidden;
       }
       #frame img {
-        height:300px;
+        width:100%;
       }
       #caption {
           flex-grow: 1;
@@ -45,45 +45,611 @@
     </div>
   </body>
   <script>
-    const imageSrc = [
-    "./images/Layer-2.png",
-    "./images/Layer-3.png",
-    "./images/Layer-4.png",
-    "./images/Layer-5.png",
-    "./images/Layer-6.png",
-    "./images/Layer-7.png",
-    "./images/Layer-8.png",
-    "./images/Layer-9.png",
-    "./images/Layer-10.png",
-    "./images/Layer-11.png",
-    "./images/Layer-12.png",
-    "./images/Layer-13.png",
-    "./images/Layer-14.png",
-    "./images/Layer-15.png",
-    "./images/Layer-16.png",
-    "./images/Layer-17.png"]
+    const LENGTH = 92
+    const imageSrc = []
+    for(let i = 0; i < LENGTH; i++) {
+      imageSrc.push(`./images/${i}.png`)
+    }
+
     const captions = [
-      "<div><h3 id='title'>금동미륵보살반가사유상(국보 제83호)</h3><span id='description'>일본 고류사 목조 미륵보살 반가 사유상과 유사 -> 삼국 시대의 한일 교류를 보여 줌</span></div>",
-      "<div><h3 id='title'>3</h3><span id='description'>description</span></div>",
-      "<div><h3 id='title'>4</h3><span id='description'>description</span></div>",
-      "<div><h3 id='title'>5</h3><span id='description'>description</span></div>",
-      "<div><h3 id='title'>6</h3><span id='description'>description</span></div>",
-      "<div><h3 id='title'>7</h3><span id='description'>description</span></div>",
-      "<div><h3 id='title'>8</h3><span id='description'>description</span></div>",
-      "<div><h3 id='title'>9</h3><span id='description'>description</span></div>",
-      "<div><h3 id='title'>10</h3><span id='description'>description</span></div>",
-      "<div><h3 id='title'>11</h3><span id='description'>description</span></div>",
-      "<div><h3 id='title'>12</h3><span id='description'>description</span></div>",
-      "<div><h3 id='title'>13</h3><span id='description'>description</span></div>",
-      "<div><h3 id='title'>14</h3><span id='description'>description</span></div>",
-      "<div><h3 id='title'>15</h3><span id='description'>description</span></div>",
-      "<div><h3 id='title'>16</h3><span id='description'>description</span></div>",
-      "<div><h3 id='title'>17</h3><span id='description'>description</span></div>"
+      `<div>
+        <h3 id='title'>금동미륵보살반가사유상(국보 제83호)(삼국시대)</h3>
+        <span id='description'>
+          일본 고류사 목조 미륵보살 반가 사유상과 유사 ->
+          삼국 시대의 한일 교류를 보여 줌
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>연가 7년명 금동 여래 입상(고구려)</h3>
+        <span id='description'>
+          광배의 뒷면에 '연가 7년'이라는 글자가 새겨져 있어
+          불상의 제작 연도를 알 수 있음
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>장군총(고구려)</h3>
+        <span id='description'>
+          고구려 초기에 주로 제작된 계단식 돌무지무덤
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>호우총 청동 그릇(경주 호우총)(고구려)</h3>
+        <span id='description'>
+          '광개토지호태왕 호우십'이라는 글자가 새겨져 있어
+          당시 고구려와 신라의 관계를 보여
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>사신도 중 현무도(강서대묘)(고구려)</h3>
+        <span id='description'>
+          도교의 방위신을 그린 사신도 중 현무(북)를 그린
+          고분 벽화 -> 도교 사상 반영
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>서산 용현리 마애 여래 삼존상(백제)</h3>
+        <span id='description'>
+          바위에 새겨진 것으로, '백제의 미소'라고도 불림
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>익산 미륵사지 석탑(복원)(백제)</h3>
+        <span id='description'>
+          목조 건물을 본떠 만든 석탑 -> 목탑에서 석탑으로
+          넘어가는 과도기적 모습을 보임
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>부여 정림사지 5층 석탑(백제)</h3>
+        <span id='description'>
+          목탑 양식의 흔적이 남아있음, 한때 '평제탑'
+          이라고 불리기도 하였음
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>부여 능산리사지 석조 사리감(창왕명 석조 사리감)(백제)</h3>
+        <span id='description'>
+          부여 능산리 절터에서 발견됨, 창왕(위덕왕)이 아버지 성왕의 명복을 빌기 위해
+          능산리 절터를 조성하였음을 알려 줌
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>백제 금동 대향로(백제)</h3>
+        <span id='description'>
+          부여 능산리에서 발견, 불교/도교의 영향, 뛰어난 금속 공예 기술을
+          알 수 있다
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>산수무늬 벽돌(백제)</h3>
+        <span id='description'>
+          도교 사상 반영 -> 자연과 더불어 살고자 하는 바람이 담겨 있음
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>칠지도(백제)</h3>
+        <span id='description'>
+          백제에서 만들어 왜에 보낸 철제 칼로, 백제와 왜의 교류를 보여 줌
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>서울 석촌동 고분(백제)</h3>
+        <span id='description'>
+          고구려의 돌무지무덤과 유사한 계단식 돌무지무돔 -> 고구려와 백제의
+          문화적 유사성을 보여
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>공주 무령왕릉(백제)</h3>
+        <span id='description'>
+          중국 남조의 영향을 받은 벽돌무덤으로 도굴되지 않은 채 발견되었으며,
+          무덤 주인을 알 수 있는 지석, 석수, 금으로 만든 왕과 왕비의 장식품 등
+          다양한 유물이 출토됨
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>무령왕릉 출토 석수(백제)</h3>
+        <span id='description'>
+          중국 남조의 영향을 받은 벽돌무덤으로 도굴되지 않은 채 발견되었으며,
+          무덤 주인을 알 수 있는 지석, 석수, 금으로 만든 왕과 왕비의 장식품 등
+          다양한 유물이 출토됨
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>무령왕릉 출토 금제 관식(백제)</h3>
+        <span id='description'>
+          중국 남조의 영향을 받은 벽돌무덤으로 도굴되지 않은 채 발견되었으며,
+          무덤 주인을 알 수 있는 지석, 석수, 금으로 만든 왕과 왕비의 장식품 등
+          다양한 유물이 출토됨
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>경주 배동 석조 여래 삼존 입상(신라)</h3>
+        <span id='description'>
+          신라의 대표적인 불상으로, 작은 체구에 아기같은 얼굴을 하고 있음
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>경주 분황사 모전 석탑(신라)</h3>
+        <span id='description'>
+          전탑을 모방하여 돌을 벽돌 모양으로 다듬어 쌓은 석탑
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>첨성대(신라)</h3>
+        <span id='description'>
+          선덕 여왕 때 축조, 현존하는 동양에서 가장 오래된 천문대로 알려짐
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>금관(신라)</h3>
+        <span id='description'>
+          신라의 금 세공 기술이 높은 수준임을 알 수 있음
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>천마도(신라)</h3>
+        <span id='description'>
+          돌무지덧널무덤인 천마총에서 발견되었으며, 말다래에 그려진 그림
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>돌무지덧널무덤의 구조(신라)</h3>
+        <span id='description'>
+          무덤 구조상 벽화를 그릴 수 없음, 도굴이 어려워 껴묻거리가 많이
+          남아 있음
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>기마 인물형 토기(신라)</h3>
+        <span id='description'>
+          경주의 신라 고분에서 출토, 주인상과 하인상의 의복과 말갖춤에서
+          차이를 보임
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>금관가야의 김해 대성동 고분군(가야)</h3>
+        <span id='description'>
+          전기 가야 연맹을 주도한 금관가야의 대표 고분, 금관가야는 풍부한
+          철 생산, 낙랑과 왜를 연결하는 중계 무역으로 번성함
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>대가야의 고령 지산동 고분군(가야)</h3>
+        <span id='description'>
+          후기 가야 연맹을 주도한 대가야의 대표 고분, 대가야는 농업에
+          유리한 입지와 풍부한 철 산지를 보유하여 번성함
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>경주 석굴암 본존불상(통일신라)</h3>
+        <span id='description'>
+          화강암을 쌓아 동굴처럼 만든 석굴암 중앙에 위치한 불상으로,
+          근엄한 표정을 하고 있음
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>경주 감은사지 3층 석탑(통일신라)</h3>
+        <span id='description'>
+          2기의 쌍탑으로, 목탑 구조를 단순화하여 석탑의 양식을 마련함
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>경주 불국사 3층 석탑(석가탑)(통일신라)</h3>
+        <span id='description'>
+          탑신부에서 무구정광대다라니경이 발견됨, 통일 신라 3층 석탑의 정형
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>경주 불국사 다보탑(통일신라)</h3>
+        <span id='description'>
+          복잡하고 화려하면서도 균형 잡힌 통일 신라 석조 미술의 백미
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>양양 진전사지 3층 석탑(통일신라)</h3>
+        <span id='description'>
+          신라 말에 건립되었다고 추정, 기단과 몸돌에 앉아 있는
+          천인상을 조각함
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>화순 쌍봉사 철감선사탑(통일신라)</h3>
+        <span id='description'>
+          신라 말 선종의 유행으로 승려의 사리나 유골을 모신 승탑 유행
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>경주 김유신묘(통일신라)</h3>
+        <span id='description'>
+          굴식 돌방무덤, 무덤에 12지상이 조각된 둘레돌(호석)이 둘러져 있음
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>원성왕릉 무인석(통일신라)</h3>
+        <span id='description'>
+          서역인의 모습을 하고 있어 당시 신라와 서역의 교류를 보여줌
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>성덕 대왕 신종(통일신라)</h3>
+        <span id='description'>
+          우리나라에서 가장 큰 종으로, 경덕왕 때 만들기 시작하여
+          혜공왕 때 완성
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>무구정광대다라니경(통일신라)</h3>
+        <span id='description'>
+          현존하는 세계에서 가장 오래된 목판 인쇄물로,
+          경주 불국사 3층 석탑의 수리 과정에서 발견
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>이불병좌상(발해)</h3>
+        <span id='description'>
+          고구려 양식의 영향을 받은 불상, 석가모니불과
+          다보불이 다보탑 안에 앉아 있는 모습을 표현함
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>돌사자상(발해)</h3>
+        <span id='description'>
+          고구려의 영향을 받은, 정혜 공주 무덤에서 발견된 조각상
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>석등(발해)</h3>
+        <span id='description'>
+          상경성에서 출토, 고구려 양식의 영향을 받은 석등
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>치미(발해)</h3>
+        <span id='description'>
+          상경성에서 출토, 고구려 양식의 영향을 받은 장식 기와
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>영광탑(발해)</h3>
+        <span id='description'>
+          벽돌로 만든 전탑 중 유일한 발해 탑으로 완전한 형태로 보존
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>하남 하사창동 철조 석가여래 좌상(고려)</h3>
+        <span id='description'>
+          고려 초에 제작된 대형 철불로, 광주 춘궁리 철불이라고도 불렸음
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>논산 관촉사 석조 미륵보살 입상(고려)</h3>
+        <span id='description'>
+          고려 초의 거대 불상으로 개성 있는 지방 문화를 보여 주며,
+          '은진 미륵'이라고도 불림
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>파주 용미리 마애 이불 입상(고려)</h3>
+        <span id='description'>
+          고려 초의 거대 불상. 소박한 지방 문화의 모습을 보여 줌
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>안동 이천동 마애 여래 입상(고려)</h3>
+        <span id='description'>
+          고려 초의 거대 불상. '제비원 석불'이라고도 함
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>영주 부석사 소조 여래 좌상(고려)</h3>
+        <span id='description'>
+          신라의 전통 양식을 계승하였으며, 뛰어난 세련미를 보임
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>평창 월정사 8각 9층 석탑(고려)</h3>
+        <span id='description'>
+          고려 중기에 만들어진 대표적인 다각 다층의 석탑
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>개성 경천사지 10층 석탑(고려)</h3>
+        <span id='description'>
+          원의 영향을 받아 대리석으로 제작, 조선 시대 원각사지
+          10층 석탑에 영향을 줌
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>청자 참외모양 병(고려)</h3>
+        <span id='description'>
+          무늬나 장식이 없는 순청자, 순청자는 10~11세기 중반에 유행함
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>청자 상감 운학무늬 매병(고려)</h3>
+        <span id='description'>
+          고려만의 독자적 기술인 상감 청자, 상감 청자는 12세기 중엽 이후
+          유행함
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>안동 봉정사 극락전(고려)</h3>
+        <span id='description'>
+          주심포 양식, 배흘림기둥, 현존하는 우리나라에서 가장 오래된
+          목조 건축물
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>영주 부석사 무량수전(고려)</h3>
+        <span id='description'>
+          고려 후기에 만들어진 주심포 양식의 건축물, 배흘림기둥, 팔작지붕
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>예산 수덕사 대웅전(고려)</h3>
+        <span id='description'>
+          고려 후기에 만들어진 주심포 양식의 건축물, 배흘림기둥, 맞배지붕
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>황해도 성불사 응진전(고려)</h3>
+        <span id='description'>
+          기둥과 기둥 사이에도 공포가 있는 다포 양식의 고려 후기 건축물
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>혼일강리역대국도지도(조선)</h3>
+        <span id='description'>
+          조선 전기 태종 때 제작된 동아시아에서 가장 오래된 세계 지도,
+          중국 중심의 세계관
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>곤여만국전도(조선)</h3>
+        <span id='description'>
+          중국에서 선교사 마테오 리치가 제작한 서양식 세계 지도로, 조선 후기에
+          전래되어 조선인의 세계관 확대에 영향을 줌
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>동국지도(조선)</h3>
+        <span id='description'>
+          조선 후기 영조 때 정상기가 제작, 최초로 100리 척 사용
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>대동여지도(조선)</h3>
+        <span id='description'>
+          조선 후기 김정호가 제작, 산맥/하천/도로망 등을 표시. 10리마다
+          눈금으로 거리 표시, 목판으로 제작, 휴대 간편
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>천상열차분야지도(조선)</h3>
+        <span id='description'>
+          조선 태조 때 고구려의 천문도를 바탕으로 제작
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>측우기(조선)</h3>
+        <span id='description'>
+          조선 세종 때 처음 제작된 강우량 측정 기구
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>앙부일구(조선)</h3>
+        <span id='description'>
+          조선 세종 때 제작된 해시계
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>자격루(조선)</h3>
+        <span id='description'>
+          물시계로 밤낮이나 날씨에 상관없이 시간을 알 수 있음
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>거중기(조선)</h3>
+        <span id='description'>
+          조선 정조 때 정약용이 "기기도설"을 참고하여 제작해 수원 화성 축조에 이용함
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>서울 원각사지 10층 석탑(조선)</h3>
+        <span id='description'>
+          조선 세조 때 건립, 고려 개성 경천사지 10층 석탑의 영향을 받음
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>해인사 장경판전(조선)</h3>
+        <span id='description'>
+          고려 시대에 만들어진 팔만대장경판을 보관하기 위해 조선 초에 건립
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>보은 법주사 팔상전(조선)</h3>
+        <span id='description'>
+          조선 후기의 건축물로, 우리나라 유일의 목조 5층탑, 내부에 팔상도 그림이 있음
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>김제 금산사 미륵전(조선)</h3>
+        <span id='description'>
+          조선 후기에 건축된 규모가 큰 다층 다포계 건물로 내부는 통층
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>구례 화엄사 각황전(조선)</h3>
+        <span id='description'>
+          조선 후기에 건축된 규모가 큰 다층 다포계 건물. 현존하는
+          중층 불전 중에서 가장 큰 규모
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>고사관수도(조선 전기회화)</h3>
+        <span id='description'>
+          15세기 강희안의 작품. 물을 바라보는 선비의 모습을 과감한 필치로 표현함
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>몽유도원도(조선 전기회화)</h3>
+        <span id='description'>
+          15세기 도화서 환원 안견이 안평 대군의 꿈속 무릉도원의 이야기를 듣고 그린 그림.
+          현실 세계와 도원 세계가 대비를 이루면서 전체적으로 조화를 이룸
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>사군자(조선 전기회화)</h3>
+        <span id='description'>
+          매화/난초/국화/대나무를 소재로 사대부가 즐겨 그린 그림으로, 16세기에 유행함
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>초충도(조선 전기회화)</h3>
+        <span id='description'>
+          16세기 심사임당이 풀과 벌레를 소재로 그린 그림
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>민화(조선 후기회화)</h3>
+        <span id='description'>
+          조선 후기에 유행함. 대부분 작자를 알 수 있으며, 민중의 소망과 기원을 담음
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>진경 산수화(조선 후기회화)</h3>
+        <span id='description'>
+          18세기 정선이 개창한 화풍으로, 우리나라의 실제 경치를 사실적으로 표현한 산수화
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>풍속화(조선 후기회화)</h3>
+        <span id='description'>
+          조선 후기에는 당시 사람들의 생활 모습을 담은 풍속화가 유행함
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>영통동구도(조선 후기회화)</h3>
+        <span id='description'>
+          강세황이 서양의 음영법과 원근법을 사용하여 영통동으로 향하는 길목의 풍경을
+          표현한 그림
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>세한도(조선 후기회화)</h3>
+        <span id='description'>
+          19세기 제주도에 유배 중이던 김정희가 제자 이상적에게 그려 준 그림
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>분청사기(조선)</h3>
+        <span id='description'>
+          15세기에 유행, 소박한 무늬로 장식
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>백자(조선)</h3>
+        <span id='description'>
+          16세기 이후 유행. 사대부 취향에 잘 어울림
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>청화 백자(조선)</h3>
+        <span id='description'>
+          조선 후기에 유행. 회화청 안료를 사용하여 푸른색 그림을
+          그려 넣은 자기
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>한성순보(개항기)</h3>
+        <span id='description'>
+          우리나라 최초의 신문, 박문국에서 열흘에 한번씩 발행함.
+          관보적 성격을 가짐
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>독립신문(개항기)</h3>
+        <span id='description'>
+          우리나라 최초의 민간 신문. 서재필 주도로 창간. 한글판과
+          영문판 발행
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>황성신문(개항기)</h3>
+        <span id='description'>
+          국한문 혼용체로 발행(유림층 대상). 장지연의 항일 논설인
+          '시일야방성대곡' 게재
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>제국신문(개항기)</h3>
+        <span id='description'>
+          순한글로 발행하여 서민층과 부녀자에게 많이 읽힘
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>대한매일신보(개항기)</h3>
+        <span id='description'>
+          영국인 베델이 발행인으로 참여, 항일 논조, 의병 운동에
+          호의적인 기사 게재
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>독립문(개항기)</h3>
+        <span id='description'>
+          프랑스의 개선문을 모방하여 독립 협회의 주도로 건립됨
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>명동 성당(개항기)</h3>
+        <span id='description'>
+          고딕 양식, 6월 민주 항쟁 당시 시위대의 농성장소로 이용됨
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>덕수궁 석조전(개항기)</h3>
+        <span id='description'>
+          유럽풍 석조 건물로 영국인 하딩이 설계함. 광복 이후
+          미/소 공동 위원회가 개최됨
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>덕수궁 중명전(개항기)</h3>
+        <span id='description'>
+          고종의 집무실로 사용되기도 함. 1905년 을사늑약이 체결된 장소
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>구러시아 공사관(개항기)</h3>
+        <span id='description'>
+          르네상스 양식. 을미사변 이후 고종이 피신함(아관 파천)
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>원각사(개항기)</h3>
+        <span id='description'>
+          우리나라 최초의 서양식 극장. 신소설 "은세계"가 연극으로 상연됨
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>전차(개항기)</h3>
+        <span id='description'>
+          1899년 서대문에서 청량리 구간이 처음으로 개통됨
+        </span>
+      </div>`,
+      `<div>
+        <h3 id='title'>철도(개항기)</h3>
+        <span id='description'>
+          1899년 최초의 철도인 경인선(노량진에서 제물포 구간)이 개통됨
+        </span>
+      </div>`,
     ]
     const createRandemIndex = (length) => Math.floor(Math.random() * length)
     let index = 0
     const doNext = () => {
-      index = createRandemIndex(16)
+      index = createRandemIndex(LENGTH)
+      console.log(index);
       update()
     }
     const showInfo = () => caption.style.opacity = 1
