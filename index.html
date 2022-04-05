@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title></title>
+    <style>
+      .container {
+        width:100%;
+        height: 95vh;
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform:translate(-50%, -50%);
+        display:flex;
+        flex-direction: column;
+
+      }
+      #frame {
+        text-align: center;
+      }
+      #frame img {
+        width:100%;
+      }
+      #caption {
+          flex-grow: 1;
+          width:90%;
+          margin:0 auto;
+      }
+      .buttons button {
+        width:100%;
+        padding:8px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="frame"></div>
+      <div id="caption"></div>
+      <div class="buttons">
+        <button id="info">정답보기</button>
+        <button id="next">넘어가기</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    const imageSrc = [
+    "./images/Layer-2.png",
+    "./images/Layer-3.png",
+    "./images/Layer-4.png",
+    "./images/Layer-5.png",
+    "./images/Layer-6.png",
+    "./images/Layer-7.png",
+    "./images/Layer-8.png",
+    "./images/Layer-9.png",
+    "./images/Layer-10.png",
+    "./images/Layer-11.png",
+    "./images/Layer-12.png",
+    "./images/Layer-13.png",
+    "./images/Layer-14.png",
+    "./images/Layer-15.png",
+    "./images/Layer-16.png",
+    "./images/Layer-17.png"]
+    const captions = [
+      "<div><h3 id='title'>금동미륵보살반가사유상(국보 제83호)</h3><span id='description'>일본 고류사 목조 미륵보살 반가 사유상과 유사 -> 삼국 시대의 한일 교류를 보여 줌</span></div>",
+      "<div><h3 id='title'>3</h3><span id='description'>description</span></div>",
+      "<div><h3 id='title'>4</h3><span id='description'>description</span></div>",
+      "<div><h3 id='title'>5</h3><span id='description'>description</span></div>",
+      "<div><h3 id='title'>6</h3><span id='description'>description</span></div>",
+      "<div><h3 id='title'>7</h3><span id='description'>description</span></div>",
+      "<div><h3 id='title'>8</h3><span id='description'>description</span></div>",
+      "<div><h3 id='title'>9</h3><span id='description'>description</span></div>",
+      "<div><h3 id='title'>10</h3><span id='description'>description</span></div>",
+      "<div><h3 id='title'>11</h3><span id='description'>description</span></div>",
+      "<div><h3 id='title'>12</h3><span id='description'>description</span></div>",
+      "<div><h3 id='title'>13</h3><span id='description'>description</span></div>",
+      "<div><h3 id='title'>14</h3><span id='description'>description</span></div>",
+      "<div><h3 id='title'>15</h3><span id='description'>description</span></div>",
+      "<div><h3 id='title'>16</h3><span id='description'>description</span></div>",
+      "<div><h3 id='title'>17</h3><span id='description'>description</span></div>"
+    ]
+    const createRandemIndex = (length) => Math.floor(Math.random() * length)
+    let index = createRandemIndex(16)
+    const doNext = () => {
+      index = createRandemIndex(16)
+      update()
+    }
+    const showInfo = () => {
+      caption.style.opacity = 1
+    }
+    next.addEventListener("click", () => doNext())
+    info.addEventListener("click", () =>showInfo())
+    const update = () => {
+      caption.style.opacity = 0
+      const image = new Image()
+      image.src = imageSrc[index]
+      frame.innerHTML = image.outerHTML
+      caption.innerHTML = captions[index]
+    }
+    update()
+  </script>
+</html>
